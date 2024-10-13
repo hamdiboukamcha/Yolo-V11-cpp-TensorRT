@@ -1,5 +1,5 @@
 # YOLOv11 C++ TensorRT
-
+![Inference Time of YOLOv11 ](asset/Yolo_v11_cpp_tenosrrt.PNG)
 ![Inference Time of YOLOv11 ](asset/output.gif)
 
 <a href="https://github.com/hamdiboukamcha/Yolo-V11-cpp-TensorRT" style="margin: 0 2px;">
