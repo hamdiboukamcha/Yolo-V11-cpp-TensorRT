@@ -8,8 +8,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Define the path to TensorRT installation
-set(TENSORRT_PATH "F:/Program Files/TensorRT-8.6.1.6")  # Update this to the actual path for TensorRT
+# Define the path to TensorRT installation based on architecture
+if(WIN32)
+    set(TENSORRT_PATH "F:/Program Files/TensorRT-8.6.1.6")
+else()
+    set(TENSORRT_PATH "/usr/local/cuda/")
+endif()
 
 # Define the path to OpenCV installation
 
@@ -59,12 +63,21 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 # Link TensorRT libraries
 # Specify full paths to TensorRT libraries to avoid relying on link_directories
-set(TENSORRT_LIBS
-    "${TENSORRT_PATH}/lib/nvinfer.lib"
-    "${TENSORRT_PATH}/lib/nvonnxparser.lib"
-    "${TENSORRT_PATH}/lib/nvparsers.lib"
-    "${TENSORRT_PATH}/lib/nvinfer_plugin.lib"
-)
+if(WIN32)
+    set(TENSORRT_LIBS
+        "${TENSORRT_PATH}/lib/nvinfer.lib"
+        "${TENSORRT_PATH}/lib/nvonnxparser.lib"
+        "${TENSORRT_PATH}/lib/nvparsers.lib"
+        "${TENSORRT_PATH}/lib/nvinfer_plugin.lib"
+    )
+else()
+    set(TENSORRT_LIBS
+        "/usr/lib/aarch64-linux-gnu/libnvinfer.so"
+        "/usr/lib/aarch64-linux-gnu/libnvonnxparser.so"
+        "/usr/lib/aarch64-linux-gnu/libnvparsers.so"
+        "/usr/lib/aarch64-linux-gnu/libnvinfer_plugin.so"
+    )
+endif()
 
 # Link libraries to the target
 target_link_libraries(${PROJECT_NAME} PRIVATE

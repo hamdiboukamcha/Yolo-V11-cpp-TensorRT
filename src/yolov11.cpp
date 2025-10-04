@@ -1,4 +1,4 @@
-#include "YOLOv11.h"             // Header file for YOLOv11 class
+#include "yolov11.h"             // Header file for YOLOv11 class
 #include "logging.h"             // Logging utilities
 #include "cuda_utils.h"          // CUDA utility functions
 #include "macros.h"              // Common macros
